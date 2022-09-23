@@ -2,7 +2,6 @@ import uvicorn
 from app import create_app
 
 app = create_app()
-
 from controllers import *
 
 if __name__ == '__main__':

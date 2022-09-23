@@ -1,5 +1,9 @@
+from typing import Union
+
 from fastapi import APIRouter
-from fastapi import UploadFile
+from fastapi import UploadFile, File, Form
+from fastapi.responses import StreamingResponse
+from io import BytesIO
 
 from core.pic_handler import PicHandler
 
@@ -12,3 +16,30 @@ def create_file(file: UploadFile):
     description = file.content_type
     PicHandler.add_file(image=image, description=description)
     return {'filename': file.filename}
+
+
+@router.post("/uploadfile")
+def create_upload_file(file: UploadFile):
+    return {"filename": file.filename}
+
+
+@router.post("/files")
+async def create_file(file: bytes = File()):
+    return {"file_size": len(file)}
+
+
+@router.get('/get-info/{id_}')
+def get_info(id_=int):
+    result = PicHandler.get_image_list(id_=id_)
+    return result
+
+
+@router.post('/send-image')
+def send_image(id_: Union[int, None] = None):
+    result = PicHandler.send_image(id_=id_)
+    return result
+
+
+
+
+

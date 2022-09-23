@@ -1,33 +1,6 @@
 version: "3.6"
 
 services:
-  fastapi_db:
-    image: mysql:5.7
-    container_name: fastapi_mysql
-    environment:
-      MYSQL_PASSWORD: 11111111
-      MYSQL_ROOT_PASSWORD: 11111111
-      MYSQL_DATABASE: fastapi_test_db
-    volumes:
-      - ./db/mysql/mysql_data:/var/lib/mysql
-    ports:
-      - '8000:3308'
-    networks:
-      - fastapi-network
-
-  phpmyadmin:
-    depends_on:
-      - fastapi_db
-    image: phpmyadmin/phpmyadmin
-    container_name: fastapi_php
-    restart: always
-    ports:
-      - '8081:80'
-    environment:
-      PMA_HOST: fastapi_db
-    networks:
-      - fastapi-network
-
   python:
     build:
       context: .
@@ -40,6 +13,7 @@ services:
     tty: true
     volumes:
       - ./src:/app:rw
+      - /Users/vicky/Desktop/test_vicky:/image:rw
     networks:
       - fastapi-network
 
@@ -47,10 +21,3 @@ networks:
   fastapi-network:
     external:
      name: fastapi-network
-
-
-
-
-
-
-

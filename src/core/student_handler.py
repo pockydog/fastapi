@@ -1,10 +1,13 @@
 from models.models import Student
+from db_setting import session
+
+db = session
 
 
 class StudentHandler:
 
     @staticmethod
-    def get_user(db, user_id):
+    def get_user(user_id):
         conditions = list()
         result_list = list()
         if user_id:

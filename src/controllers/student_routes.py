@@ -14,5 +14,5 @@ def create_item():
 
 @router.get('/info/{user_id}')
 def create_item(user_id: int):
-    result = StudentHandler.get_user(db=session, user_id=user_id)
+    result = StudentHandler.get_user(user_id=user_id)
     return result
