@@ -1,0 +1,22 @@
+#version: "3.6"
+#
+#services:
+#  python:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: fastapi_py
+#    image: fastapi_py
+#    env_file: dev.env
+#    ports:
+#      - '8023:8000'
+#    tty: true
+#    volumes:
+#      - ./src:/app:rw
+#    networks:
+#      - fastapi-network
+#
+#networks:
+#  fastapi-network:
+#    external:
+#     name: fastapi-network

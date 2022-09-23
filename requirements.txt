@@ -8,3 +8,4 @@ uvicorn==0.18.3
 Faker==13.12.1
 pymysql==1.0.2
 pydantic~=1.10.2
+python-multipart==0.0.5

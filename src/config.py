@@ -14,3 +14,6 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    IMAGE_PATH = os.environ['IMAGE_PATH']
+    UPLOAD_FOLDER = 'static'
+

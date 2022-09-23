@@ -1,19 +1,18 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 
-# from pydantic import BaseModel
+from core.student_handler import StudentHandler
+from db_setting import session
 
-from core.student_hanlder import StudentHandler
-
-app = FastAPI()
+router = APIRouter(prefix='/student')
 
 
-@app.get('/info')
+@router.get('/info')
 def create_item():
     result = {'result': 'vicky'}
     return result
 
 
-# @app.get('/info/{user_id}')
-# def create_item(user_id: int):
-#     result = StudentHandler.get_user(db=session, user_id=user_id)
-#     return result
+@router.get('/info/{user_id}')
+def create_item(user_id: int):
+    result = StudentHandler.get_user(db=session, user_id=user_id)
+    return result

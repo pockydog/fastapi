@@ -1,5 +1,5 @@
 from sqlalchemy import func, Column, Integer, String, Boolean, DateTime
-from db_setting import Base
+from db_setting import Base, engine
 
 
 class Student(Base):
@@ -11,4 +11,14 @@ class Student(Base):
     phone_number = Column(String(30), nullable=False)
     create_datetime = Column(DateTime, server_default=func.now())
     update_datetime = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class ProductPic(Base):
+    __tablename__ = 'product_pic'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    description = Column(String(1000), comment='商品圖片描述')
+    remark = Column(String(100), nullable=False, comment='備註')
+    create_datetime = Column(DateTime, server_default=func.now())
+    update_datetime = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
 
