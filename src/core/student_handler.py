@@ -1,3 +1,4 @@
+from typing import Optional
 from models.models import Student
 from db_setting import session
 
@@ -5,6 +6,9 @@ db = session
 
 
 class StudentHandler:
+    @staticmethod
+    def common_parameters(id_: int = 10):
+        return {'id': id_}
 
     @staticmethod
     def get_user(user_id):

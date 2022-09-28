@@ -1,16 +1,18 @@
-from typing import Union
+from typing import Optional, Union
 
-from fastapi import APIRouter
-from fastapi import UploadFile, File, Form
-from fastapi.responses import StreamingResponse
-from io import BytesIO
+from fastapi import APIRouter, Depends
+from fastapi import UploadFile, File
 
 from core.pic_handler import PicHandler
+from schema.student_schema import PicTestSchema
 
-router = APIRouter(prefix='/pic')
+
+pic_router = APIRouter(prefix='/pic')
 
 
-@router.post('/file')
+
+
+@pic_router.post('/file')
 def create_file(file: UploadFile):
     image = file.file
     description = file.content_type
@@ -18,28 +20,31 @@ def create_file(file: UploadFile):
     return {'filename': file.filename}
 
 
-@router.post("/uploadfile")
+@pic_router.post("/uploadfile")
 def create_upload_file(file: UploadFile):
     return {"filename": file.filename}
 
 
-@router.post("/files")
+@pic_router.post("/files")
 async def create_file(file: bytes = File()):
     return {"file_size": len(file)}
 
 
-@router.get('/get-info/{id_}')
+@pic_router.get('/get-info/{id_}')
 def get_info(id_=int):
     result = PicHandler.get_image_list(id_=id_)
     return result
 
 
-@router.post('/send-image')
+@pic_router.post('/send-image')
 def send_image(id_: Union[int, None] = None):
     result = PicHandler.send_image(id_=id_)
     return result
 
 
+@pic_router.get('/schema/test')
+def read_item(commons: dict = Depends(PicTestSchema)):
+    return commons
 
 
 

@@ -1,5 +1,5 @@
 from sqlalchemy import func, Column, Integer, String, Boolean, DateTime
-from db_setting import Base, engine
+from db_setting import Base
 
 
 class Student(Base):

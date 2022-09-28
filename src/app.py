@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from controllers import router
+from controllers import *
 
 app = FastAPI()
-app.include_router(router)
-
+app.include_router(student_router)
+app.include_router(pic_router)
 
 def create_app():
     return app
