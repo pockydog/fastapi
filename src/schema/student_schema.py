@@ -10,3 +10,11 @@ class PicTestSchema:
 class StudentInfoSchema:
     def __init__(self, user_id: Union[int, None] = None):
         self.user_id = user_id
+
+
+class StudentBasicSchema:
+    def __init__(self, name: str, gender: bool, grade: int, phone_number: Union[str, None] = 0):
+        self.name = name
+        self.gender = gender
+        self.grade = grade
+        self.phone_number = phone_number

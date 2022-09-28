@@ -10,8 +10,6 @@ from schema.student_schema import PicTestSchema
 pic_router = APIRouter(prefix='/pic')
 
 
-
-
 @pic_router.post('/file')
 def create_file(file: UploadFile):
     image = file.file
@@ -40,11 +38,4 @@ def get_info(id_=int):
 def send_image(id_: Union[int, None] = None):
     result = PicHandler.send_image(id_=id_)
     return result
-
-
-@pic_router.get('/schema/test')
-def read_item(commons: dict = Depends(PicTestSchema)):
-    return commons
-
-
 
