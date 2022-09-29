@@ -1,10 +1,9 @@
-from typing import Optional, Union
+from typing import Union
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from fastapi import UploadFile, File
 
 from core.pic_handler import PicHandler
-from schema.student_schema import PicTestSchema
 
 
 pic_router = APIRouter(prefix='/pic')

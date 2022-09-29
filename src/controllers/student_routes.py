@@ -28,3 +28,15 @@ def add_info(common: StudentBasicSchema = Depends(StudentBasicSchema)):
     )
     return result
 
+
+@student_router.delete('delete/{name}')
+def delete_info(common: StudentSchema = Depends(StudentSchema)):
+    result = StudentHandler.del_user(name=common.name)
+    return result
+
+
+@student_router.put('update/{id}')
+def update_info(common: StudentSchema = Depends(StudentSchema)):
+    result = StudentHandler.update_info(name=common.name)
+    return result
+

@@ -55,6 +55,30 @@ class StudentHandler:
         if grade not in Const.Grade.get_elements():
             raise Exception('Only 1-3 grade')
 
+    @classmethod
+    def del_user(cls, name):
+        user = db.query(Student).filter(Student.name == name).first()
+        if not user:
+            raise Exception('User not found')
+        session.delete(user)
+        session.commit()
+        return {'success': True}
+
+
+    @classmethod
+    def update_info(cls, name):
+        user = db.query(Student).filter(Student.name == name).first()
+        if not user:
+            raise Exception('User not found')
+        user.name = name
+        session.add(user)
+        result = {
+            'name': user.name
+        }
+        session.commit()
+        return result
+
+
 
 
 

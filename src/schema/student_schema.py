@@ -18,3 +18,11 @@ class StudentBasicSchema:
         self.gender = gender
         self.grade = grade
         self.phone_number = phone_number
+
+
+class StudentSchema:
+    def __init__(self, name: Union[str, None] = None):
+        self.name = name
+
+
+
