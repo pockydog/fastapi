@@ -3,22 +3,22 @@ from fastapi import APIRouter, Depends
 from core.student_handler import StudentHandler
 from schema.student_schema import *
 
-student_router = APIRouter(prefix='/student')
+router = APIRouter(prefix='/student')
 
 
-@student_router.get('/info')
+@router.get('/info')
 def create_item():
     result = {'result': 'vicky'}
     return result
 
 
-@student_router.get('/info/{user_id}')
+@router.get('/info/{user_id}')
 def get_info(common: StudentInfoSchema = Depends(StudentInfoSchema)):
     result = StudentHandler.get_user(user_id=common.user_id)
     return result
 
 
-@student_router.post('/add-user')
+@router.post('/add-user')
 def add_info(common: StudentBasicSchema = Depends(StudentBasicSchema)):
     result = StudentHandler.add_user(
         name=common.name,
@@ -29,13 +29,13 @@ def add_info(common: StudentBasicSchema = Depends(StudentBasicSchema)):
     return result
 
 
-@student_router.delete('delete/{name}')
+@router.delete('delete/{name}')
 def delete_info(common: StudentSchema = Depends(StudentSchema)):
     result = StudentHandler.del_user(name=common.name)
     return result
 
 
-@student_router.put('update/{id}')
+@router.put('update/{id}')
 def update_info(common: StudentSchema = Depends(StudentSchema)):
     result = StudentHandler.update_info(name=common.name)
     return result

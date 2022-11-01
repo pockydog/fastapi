@@ -64,7 +64,6 @@ class StudentHandler:
         session.commit()
         return {'success': True}
 
-
     @classmethod
     def update_info(cls, name):
         user = db.query(Student).filter(Student.name == name).first()
@@ -77,10 +76,4 @@ class StudentHandler:
         }
         session.commit()
         return result
-
-
-
-
-
-
 
